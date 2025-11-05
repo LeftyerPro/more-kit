@@ -18,6 +18,7 @@ var cmds = map[string]*flag.FlagSet{
 	"comp":    flag.NewFlagSet("comp", flag.ExitOnError),
 	"folder":  flag.NewFlagSet("folder", flag.ExitOnError),
 	"file":    flag.NewFlagSet("file", flag.ExitOnError),
+	"json":    flag.NewFlagSet("json", flag.ExitOnError),
 }
 
 func main() {
@@ -46,5 +47,7 @@ func main() {
 		runFolder(cmd)
 	case "file":
 		runFile(cmd)
+	case "json":
+		runJson(cmd)
 	}
 }

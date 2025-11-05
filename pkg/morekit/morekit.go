@@ -56,3 +56,23 @@ func FileIsExist(path string) bool {
 func FileCpoy(src, dst string) error {
 	return kitFile.CopyFile(src, dst)
 }
+
+/* File-Read by:Leftyer dt:2025-11-01 */
+func FileRead(filePath string) (string, error) {
+	return kitFile.ReadFile(filePath)
+}
+
+/* File-Write by:Leftyer dt:2025-11-01 */
+func FileWrite(filePath string, content string) error {
+	return kitFile.WriteFile(filePath, content)
+}
+
+/* Json-Read by:Leftyer dt:2025-11-01 */
+func JsonRead[T any](path string) (T, error) {
+	return kitFile.ReadJSON[T](path)
+}
+
+/* Json-Write by:Leftyer dt:2025-11-01 */
+func JsonWrite[T any](path string, obj T) error {
+	return kitFile.WriteJSON(path, obj)
+}

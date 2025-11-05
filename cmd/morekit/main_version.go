@@ -25,5 +25,6 @@ func runHelp(fs *flag.FlagSet) {
 	println("  device                     show device id & name")
 	println("  comp -i <in> -o <out>   lossless comp to webp")
 	println("  folder -c copy|exist -s <src> [-d <dst>] [-clear 0|1]   copy or check folder")
-	println("  file   -c copy|exist -s <src> [-d <dst>]               copy or check file")
+	println("  file   -c copy|exist|read|write -s <src> [-d <dst>] [-t <text>] [-p <path>]   file ops")
+	println("  json   -c read|write -p <path>                  json read/write")
 }

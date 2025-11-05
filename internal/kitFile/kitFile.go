@@ -6,6 +6,7 @@
 package kitFile
 
 import (
+	"encoding/json"
 	"io"
 	"os"
 	"path/filepath"
@@ -81,4 +82,35 @@ func CopyFile(src, dst string) error {
 	_, err = io.Copy(d, s)
 	d.Close()
 	return err
+}
+
+/* File-Read-difine by:Leftyer dt:2025-11-01 */
+func ReadFile(filePath string) (string, error) {
+	data, err := os.ReadFile(filePath)
+	if err == nil {
+		return string(data), nil
+	}
+	return "", err
+}
+
+/* File-Write-difine by:Leftyer dt:2025-11-01 */
+func WriteFile(filePath string, content string) error {
+	return os.WriteFile(filePath, []byte(content), 0644)
+}
+
+/* File-Read-Json-difine by:Leftyer dt:2025-11-01 */
+func ReadJSON[T any](path string) (T, error) {
+	var zero T
+	b, err := os.ReadFile(path)
+	if err != nil {
+		return zero, err
+	}
+	err = json.Unmarshal(b, &zero)
+	return zero, err
+}
+
+/* File-Write-Json-difine by:Leftyer dt:2025-11-01 */
+func WriteJSON[T any](path string, obj T) error {
+	b, _ := json.MarshalIndent(obj, "", "  ")
+	return os.WriteFile(path, []byte(b), 0644)
 }
