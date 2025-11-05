@@ -1,5 +1,5 @@
 /*
- * kitComp.go Test-difine
+ * morekit_Comp_test.go Test-difine
  * by:Leftyer
  * dt:2025-11-01
  */
