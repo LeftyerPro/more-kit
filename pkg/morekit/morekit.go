@@ -14,12 +14,7 @@ import (
 
 /* Comp-Image by:Leftyer dt:2025-11-01 */
 func CompImage(input, output string, fileType int) error {
-	c := &kitComp.CompConfig{
-		InputPath:  input,
-		OutPutPath: output,
-		FileType:   fileType,
-	}
-	return c.CompImg()
+	return kitComp.CompImg(kitComp.CompConfig{InputPath: input, OutPutPath: output, FileType: fileType})
 }
 
 /* Device-GetId by:Leftyer dt:2025-11-01 */

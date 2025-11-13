@@ -74,19 +74,19 @@ func CompWebpBr(c CompConfig) error {
 /* pdf2WebP by:Leftyer dt:2025-11-01 */
 /* 仅处理第 1 页；需要 go-fitz */
 func pdf2WebP(c CompConfig) error {
-	doc, err := fitz.New(c.InputPath)
-	if err != nil {
-		return err
-	}
-	defer doc.Close()
-	if doc.NumPage() < 1 {
-		return fmt.Errorf("empty pdf")
-	}
-	img, err := doc.Image(0, 144) /* 默认 144 dpi */
-	if err != nil {
-		return err
-	}
-	return saveWebP(c.OutPutPath, img, c.Lossless, c.Quality)
+	// doc, err := fitz.New(c.InputPath)
+	// if err != nil {
+	// 	return err
+	// }
+	// defer doc.Close()
+	// if doc.NumPage() < 1 {
+	// 	return fmt.Errorf("empty pdf")
+	// }
+	// img, err := doc.Image(0, 144) /* 默认 144 dpi */
+	// if err != nil {
+	// 	return err
+	// }
+	return saveWebP(c.OutPutPath, nil, c.Lossless, c.Quality)
 }
 
 /* gif2WebP by:Leftyer dt:2025-11-01 */

@@ -20,21 +20,19 @@ const (
 
 /* TestUnit-CompImg by:Leftyer dt:2025-11-01 */
 func TestCompImg(t *testing.T) {
-	c := &kitComp.CompConfig{InputPath: testPNG, OutPutPath: testOut, FileType: fileType}
-	if err := c.CompImg(); err != nil {
+	if err := kitComp.CompImg(kitComp.CompConfig{InputPath: testPNG, OutPutPath: testOut, FileType: fileType}); err != nil {
 		t.Fatal(err)
 	}
 	if _, err := os.Stat(testOut); os.IsNotExist(err) {
 		t.Fatal("output missing")
 	}
-	os.Remove(testOut)
+	//os.Remove(testOut)
 }
 
 /* TestBenchmark-CompImg by:Leftyer dt:2025-11-01 */
 func BenchmarkCompImg(b *testing.B) {
-	c := &kitComp.CompConfig{InputPath: testPNG, OutPutPath: testOut, FileType: fileType}
 	for b.Loop() {
-		_ = c.CompImg()
+		_ = kitComp.CompImg(kitComp.CompConfig{InputPath: testPNG, OutPutPath: testOut, FileType: fileType})
 		os.Remove(testOut)
 	}
 }
