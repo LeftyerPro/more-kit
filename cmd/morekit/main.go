@@ -21,21 +21,33 @@ var cmds = map[string]*flag.FlagSet{
 	"json":    flag.NewFlagSet("json", flag.ExitOnError),
 }
 
+func init() {
+	defineDeviceFlags(cmds["device"])
+}
+
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("usage: morekit <command> [<args>]")
-		fmt.Println("commands: version ,device ,comp")
-		os.Exit(1)
+		runHelp(nil)
+		return
 	}
-	cmdName := os.Args[1]
-	cmd, ok := cmds[cmdName]
+	first := os.Args[1]
+	switch first {
+	case "-h", "help":
+		runHelp(nil)
+		return
+	case "-v", "version":
+		runVersion(nil)
+		return
+	}
+
+	cmd, ok := cmds[first]
 	if !ok {
-		fmt.Printf("unknown command: %s\n", cmdName)
+		fmt.Printf("unknown command: %s\n", first)
 		os.Exit(1)
 	}
 	cmd.Parse(os.Args[2:])
-	switch cmdName {
-	case "", "version":
+	switch first {
+	case "version":
 		runVersion(cmd)
 	case "help":
 		runHelp(cmd)

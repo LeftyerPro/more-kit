@@ -1,28 +1,52 @@
-# more-kit
+ # more-kit 
+ A tiny Go kit for lossless image compression (PNG/JPEG -> WebP) and common dev-ops utilities. 
 
-A tiny Go kit for **lossless** image compression (PNG/JPEG → WebP) and utility helpers.
+ ## Install 
+ ```bash 
+ go install github.com/LeftyerPro/more-kit/cmd/morekit@latest 
+ ``` 
 
-## Install
+ ## Quick Start 
+ ```bash 
+ # version 
+ morekit -v 
 
-```bash
-go install github.com/LeftyerPro/more-kit/cmd/morekit@latest
+ # compress 1.png -> 1.webp (lossless) 
+ morekit comp -i 1.png -o 1.webp -t 3 
 
-# version
-morekit -v
+ # device info (defaults to -info) 
+ morekit device 
+ morekit device -id -name 
+ morekit device -cpu -mem -disk 
+ morekit device -ips -ip 
+ ``` 
 
-# compress 1.png → 1.webp (lossless)
-morekit -i 1.png -o 1.png -t 1
-morekit -i 1.jpg -o 1.jpg -t 2
-morekit -i 1.png -o 1.webp -t 3
+ ## CLI Reference 
+ | Command  | Flags                                                                 | Description                       | 
+ |----------|-----------------------------------------------------------------------|-----------------------------------| 
+ | device   | -id -name -info -boot -uuid -cpu -cores -mem -disk -ips -macs -ip    | hardware / network info           | 
+ | comp     | -i <in> -o <out> -t <1|2|3>                                           | 1=PNG->PNG 2=JPEG->JPEG 3->WebP   | 
+ | folder   | -c copy|exist -s <src> [-d <dst>] [-clear 0|1]                        | folder copy or exist check        | 
+ | file     | -c copy|exist|read|write -s <src> [-d <dst>] [-t <text>] [-p <path>]  | file utilities                    | 
+ | json     | -c read|write -p <path>                                               | read / write json                 | 
 
-import "github.com/LeftyerPro/more-kit/pkg/morekit"
+ ## Library Usage 
+ ```go 
+ import "github.com/LeftyerPro/more-kit/pkg/morekit" 
 
-err := morekit.CompImage("in.png", "out.png", 1)
-err := morekit.CompImage("in.jpg", "out.jpg", 2)
-err := morekit.CompImage("in.png", "out.webp", 3)
+ // lossless compress 
+ err := morekit.CompImage("in.png", "out.webp", 3) 
 
-| Op      | Time      | Mem      |
-| ------- | --------- | -------- |
-| CompImg | ~44 ms/op | ~2 MB/op |
+ // device info 
+ id   := morekit.DeviceGetId() 
+ name := morekit.DeviceGetName() 
+ info := morekit.DeviceGetInfo() 
+ ``` 
 
-MIT – see [LICENSE](LICENSE) for details.
+ ## Benchmark 
+ | Op      | Time      | Mem      | 
+ |---------|-----------|----------| 
+ | CompImg | ~44 ms/op | ~2 MB/op | 
+
+ ## License 
+ MIT – see [LICENSE](LICENSE) for details. 

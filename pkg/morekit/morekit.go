@@ -12,12 +12,16 @@ import (
 	"github.com/shirou/gopsutil/host"
 )
 
+/*---------------  Comp Area ---------------*/
+
 /* Comp-Image by:Leftyer dt:2025-11-01 */
 func CompImage(input, output string, fileType int) error {
 	return kitComp.CompImg(kitComp.CompConfig{InputPath: input, OutPutPath: output, FileType: fileType})
 }
 
-/* Device-GetId by:Leftyer dt:2025-11-01 */
+/*---------------  Device Area ---------------*/
+
+/* Device-GetInfo by:Leftyer dt:2025-11-01 */
 func DeviceGetInfo() *host.InfoStat {
 	return kitDevice.GetDeviceInfo()
 }
@@ -31,6 +35,53 @@ func DeviceGetId() string {
 func DeviceGetName() string {
 	return kitDevice.GetDeviceName()
 }
+
+/* Device-GetBootTime by:Leftyer dt:2025-11-01 */
+func DeviceGetBootTime() string {
+	return kitDevice.GetBootTime().Format("2006-01-02 15:04:05")
+}
+
+/* Device-GetBIOSUUID by:Leftyer dt:2025-11-01 */
+func DeviceGetBIOSUUID() string {
+	return kitDevice.GetBIOSUUID()
+}
+
+/* Device-GetCPUName by:Leftyer dt:2025-11-01 */
+func DeviceGetCPUName() string {
+	return kitDevice.GetCPUName()
+}
+
+/* Device-GetCPUCores by:Leftyer dt:2025-11-01 */
+func DeviceGetCPUCores() int {
+	return kitDevice.GetCPUCores()
+}
+
+/* Device-GetMemoryGB by:Leftyer dt:2025-11-01 */
+func DeviceGetMemoryGB() float64 {
+	return kitDevice.GetMemoryGB()
+}
+
+/* Device-GetDiskTotalGB by:Leftyer dt:2025-11-01 */
+func DeviceGetDiskTotalGB() float64 {
+	return kitDevice.GetDiskTotalGB()
+}
+
+/* Device-GetIPList by:Leftyer dt:2025-11-01 */
+func DeviceGetIPList() []string {
+	return kitDevice.GetIPList()
+}
+
+/* Device-GetMACList by:Leftyer dt:2025-11-01 */
+func DeviceGetMACList() []string {
+	return kitDevice.GetMACList()
+}
+
+/* Device-GetDefaultIP by:Leftyer dt:2025-11-01 */
+func DeviceGetDefaultIP() string {
+	return kitDevice.GetDefaultIP()
+}
+
+/*---------------  File Area ---------------*/
 
 /* Folder-IsExist by:Leftyer dt:2025-11-01 */
 func FolderIsExist(path string, isClear int) bool {
